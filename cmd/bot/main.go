@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/I1Asyl/telegram_bot/pkg/services"
 	"github.com/I1Asyl/telegram_bot/pkg/telegram"
 	"github.com/joho/godotenv"
 )
@@ -13,7 +14,8 @@ func init() {
 }
 
 func main() {
-	bot, err := telegram.NewBot(os.Getenv("BOT_TOKEN"))
+	services := services.NewServices()
+	bot, err := telegram.NewBot(os.Getenv("BOT_TOKEN"), *services)
 	if err != nil {
 		panic(err)
 	}
